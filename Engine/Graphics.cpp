@@ -336,6 +336,34 @@ void Graphics::DrawRect( int x0,int y0,int x1,int y1,Color c )
 	}
 }
 
+
+void Graphics::DrawCircle(int centerX, int centerY, int radius, Color colour)
+{
+	auto minX = centerX - radius;
+	if (minX < 0)
+		minX = 0;
+	auto maxX = centerX + radius;
+	if (maxX > ScreenWidth)
+		maxX = ScreenWidth;
+
+	auto minY = centerY - radius;
+	if (minY < 0)
+		minY = 0;
+	auto maxY = centerY + radius;
+	if (maxY > ScreenHeight)
+		maxY = ScreenHeight;
+
+	for (int i = minX; i <= maxX; i++)
+	{
+		for (int j = minY; j <= maxY; j++)
+		{
+			if ((i-centerX) * (i - centerX) + (j-centerY) * (j - centerY) > radius * radius)
+				continue;
+			PutPixel(i, j, colour);
+		}
+	}
+}
+
 //////////////////////////////////////////////////
 //           Graphics Exception
 Graphics::Exception::Exception( HRESULT hr,const std::wstring& note,const wchar_t* file,unsigned int line )
