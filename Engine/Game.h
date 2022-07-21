@@ -29,6 +29,7 @@
 #include "Meter.h"
 #include "SoundEffect.h"
 #include <random>
+#include "FrameTimer.h"
 
 class Game
 {
@@ -65,5 +66,7 @@ private:
 	Sound title = Sound( L"Sounds\\title.wav" );
 	SoundEffect fart = SoundEffect( 
 		{ L"Sounds\\fart1.wav",L"Sounds\\fart2.wav" } );
+
+	FrameTimer frameTimer;
 	/********************************/
 };

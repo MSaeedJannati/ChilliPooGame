@@ -21,6 +21,7 @@
 #include "MainWindow.h"
 #include "Game.h"
 #include <random>
+#include <chrono>
 
 Game::Game( MainWindow& wnd )
 	:
@@ -50,6 +51,7 @@ void Game::Go()
 
 void Game::UpdateModel()
 {
+	const float deltaTime = frameTimer.Mark();
 	goal.UpdateColor();
 	if( isStarted && !isGameOver )
 	{
@@ -58,7 +60,7 @@ void Game::UpdateModel()
 
 		for( int i = 0; i < nPoo; ++i )
 		{
-			poos[i].Update();
+			poos[i].Update(deltaTime);
 			if( poos[i].TestCollision( dude ) )
 			{
 				isGameOver = true;
